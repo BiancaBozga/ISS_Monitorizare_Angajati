@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.iss2024.AngajatController">
+   <children>
+      <ListView fx:id="lista_sarcini" layoutX="26.0" layoutY="53.0" prefHeight="200.0" prefWidth="341.0" />
+      <Label layoutX="147.0" layoutY="14.0" text="Sarcini">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="490.0" layoutY="346.0" mnemonicParsing="false" text="LOGOUT" />
+      <Button layoutX="119.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleInregsitrarePrezent" text="Prezent" />
+      <Label layoutX="446.0" layoutY="51.0" text="Setari cont">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="418.0" layoutY="106.0" text="Modificare parola">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="451.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleModificareParola" text="Modifica" />
+      <PasswordField fx:id="parola_noua" layoutX="416.0" layoutY="141.0" promptText="parola noua" />
+      <ComboBox fx:id="ora" layoutX="31.0" layoutY="294.0" prefHeight="25.0" prefWidth="59.0" promptText="ora" />
+      <ComboBox fx:id="minute" layoutX="107.0" layoutY="294.0" prefHeight="25.0" prefWidth="80.0" promptText="minute" />
+      <ComboBox fx:id="sec" layoutX="206.0" layoutY="294.0" prefHeight="25.0" prefWidth="63.0" promptText="sec" />
+   </children>
+</AnchorPane>

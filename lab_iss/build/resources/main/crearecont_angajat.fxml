@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="199.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CrearecintAngajat">
+   <children>
+      <TextField layoutX="55.0" layoutY="86.0" promptText="username anagajt nou" />
+      <Button layoutX="77.0" layoutY="131.0" mnemonicParsing="false" text="Adauga anagajat" />
+   </children>
+</AnchorPane>
