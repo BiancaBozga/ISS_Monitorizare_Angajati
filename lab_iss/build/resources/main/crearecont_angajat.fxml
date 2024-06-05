@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="199.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CrearecintAngajat">
+<AnchorPane prefHeight="199.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.iss2024.CreareContangajatController">
    <children>
-      <TextField layoutX="55.0" layoutY="86.0" promptText="username anagajt nou" />
-      <Button layoutX="77.0" layoutY="131.0" mnemonicParsing="false" text="Adauga anagajat" />
+      <TextField fx:id="username" layoutX="55.0" layoutY="86.0" promptText="username anagajt nou" />
+      <Button layoutX="77.0" layoutY="131.0" mnemonicParsing="false" onAction="#Adauga" text="Adauga anagajat" />
    </children>
 </AnchorPane>

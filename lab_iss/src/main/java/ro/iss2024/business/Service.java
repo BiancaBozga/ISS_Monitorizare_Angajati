@@ -12,6 +12,7 @@ import ro.iss2024.persistance.hibernate.SarcinaRepository;
 import ro.iss2024.persistance.hibernate.SefRepository;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,6 +25,10 @@ public class Service implements Observable {
     SefRepository sefRepository;
     public Long save(Sef sef){
         return sefRepository.save(sef);
+    }
+    public Long saveAngajat(Angajat a){
+        a.setPrezent(false);
+        return angajatRepository.save(a);
     }
     public Angajat updateAngajat(Angajat a, Time ora){
         a.setOraSosire(ora);
@@ -63,7 +68,7 @@ public class Service implements Observable {
         ob.forEach(Observer::update);
     }
 
-    public Collection<Angajat> getAllAngajati() {
+    public Collection<Angajat> getAllAngajatiP() {
         Collection<Angajat> c=ObjectTransformer.iterableToCollection(angajatRepository.findAll());
       Collection<Angajat> c_nou= c.stream()
                 .filter(Angajat::getPrezent)
@@ -76,10 +81,41 @@ public class Service implements Observable {
     public Collection<Sarcina> getAllSarcini() {
         return ObjectTransformer.iterableToCollection(sarcinaRepository.findAll());
     }
-
+    public Collection<Sarcina> getTop3Sarcini() {
+        return ObjectTransformer.iterableToCollection(sarcinaRepository.findTop3ByDescriere());
+    }
+    public Collection<Sarcina> getSarcinibyAngajatandTime(Long angajat, LocalDateTime time) {
+        return ObjectTransformer.iterableToCollection(sarcinaRepository.findSarciniByAngajatAndTime(angajat,time));
+    }
     public void updateParolaAngajat(Angajat angajat, String actualHash) {
         angajat.setPassword(actualHash);
         angajatRepository.update(angajat);
         notifyObservers();
+    }
+    public Long saveSarcina(Sarcina sarcina){
+        Long id= sarcinaRepository.save(sarcina);
+        notifyObservers();
+        return id;
+    }
+    public Angajat findAngajat(Long id){
+        return angajatRepository.find(id);
+    }
+public Angajat deleteAngajat(Long a){
+        Angajat an= angajatRepository.delete(a);
+        notifyObservers();
+        return an;
+    }
+    public void logoutAngajat(Angajat angajat) {
+        angajat.setPrezent(false);
+        angajatRepository.update(angajat);
+        notifyObservers();
+    }
+
+    public Angajat findAngajatByusername(String username) {
+        return angajatRepository.findByUsername(username);
+    }
+
+    public Collection<Angajat> getAllAngajati() {
+        return ObjectTransformer.iterableToCollection(angajatRepository.findAll());
     }
 }

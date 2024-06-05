@@ -19,6 +19,7 @@ import ro.iss2024.business.Service;
 import ro.iss2024.domain.Angajat;
 import ro.iss2024.domain.Sef;
 
+import java.io.Console;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -86,7 +87,7 @@ public class LogInController {
 
         // Check credentials and get the user object
         Object user = service.checkCredential(actualHash, user_id.getText());
-
+            System.out.println(user);
         if (user instanceof Angajat) {
             // Load Angajat controller
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Angajat.fxml"));
@@ -94,6 +95,7 @@ public class LogInController {
             AngajatController angajatController = loader.getController();
             // Set necessary services and attributes
             angajatController.setService(service);
+            angajatController.setAngajat((Angajat) user);
             // Create and show the new stage
             Stage newStage = new Stage();
             newStage.setScene(new Scene(root));
@@ -106,7 +108,9 @@ public class LogInController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/sef.fxml"));
             Parent root = loader.load();
             SefController sefController = loader.getController();
+
             sefController.setService(service);
+            sefController.setSef((Sef) user);
             // Create and show the new stage
             Stage newStage = new Stage();
             newStage.setScene(new Scene(root));

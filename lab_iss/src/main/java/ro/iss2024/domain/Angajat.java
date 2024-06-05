@@ -53,6 +53,11 @@ public class Angajat extends ro.iss2024.domain.Entity<Long>{
         this.prezent = prezent;
     }
 
+    public Angajat(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public Angajat(String username, String password, Time oraSosire, Boolean prezent) {
         this.username = username;
         this.password = password;

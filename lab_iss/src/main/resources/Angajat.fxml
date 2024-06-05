@@ -12,7 +12,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="490.0" layoutY="346.0" mnemonicParsing="false" text="LOGOUT" />
+      <Button layoutX="490.0" layoutY="346.0" mnemonicParsing="false" onAction="#Logout" text="LOGOUT" />
       <Button layoutX="119.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleInregsitrarePrezent" text="Prezent" />
       <Label layoutX="446.0" layoutY="51.0" text="Setari cont">
          <font>

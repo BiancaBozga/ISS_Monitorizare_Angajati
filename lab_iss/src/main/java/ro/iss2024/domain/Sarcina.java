@@ -2,6 +2,8 @@ package ro.iss2024.domain;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
@@ -10,11 +12,34 @@ import java.time.LocalDateTime;
 public class Sarcina extends ro.iss2024.domain.Entity<Long>{
     LocalDateTime dataOraAtribuire;
     String descriere;
+    Sef emitator ;
+    Angajat receptor;
+
+    @ManyToOne
+    @JoinColumn(name = "sef_id", referencedColumnName = "id")
+    public Sef getEmitator() {
+        return emitator;
+    }
+
+    public void setEmitator(Sef emitator) {
+        this.emitator = emitator;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "angajat_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    public Angajat getReceptor() {
+        return receptor;
+    }
+
+    public void setReceptor(Angajat receptor) {
+        this.receptor = receptor;
+    }
     @Column(name = "descriere")
     public String getDescriere() {
         return descriere;
     }
-    @Column(name = "password")
+    @Column(name = "dataOraAtribuire")
     public LocalDateTime getDataOraAtribuire() {
         return dataOraAtribuire;
     }
@@ -34,9 +59,11 @@ public class Sarcina extends ro.iss2024.domain.Entity<Long>{
         this.descriere = descriere;
     }
 
-    public Sarcina(LocalDateTime dataOraAtribuire, String descriere) {
+    public Sarcina(LocalDateTime dataOraAtribuire, String descriere,Angajat angajat,Sef sef) {
         this.dataOraAtribuire = dataOraAtribuire;
         this.descriere = descriere;
+        this.emitator=sef;
+        this.receptor=angajat;
     }
 
     @Override
@@ -44,6 +71,8 @@ public class Sarcina extends ro.iss2024.domain.Entity<Long>{
         return "Sarcina{" +
                 "dataOraAtribuire=" + dataOraAtribuire +
                 ", descriere='" + descriere + '\'' +
+                ", emitator=" + emitator +
+                ", receptor=" + receptor +
                 ", id=" + id +
                 '}';
     }
